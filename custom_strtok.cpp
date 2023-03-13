@@ -2,8 +2,9 @@
 
 using namespace std;
 
-char *strtok_custom(char c_arr[], char delim) {
+char *strtok_custom(char c_arr[], string delim) {
     static char *input = NULL;
+    char delim_char = delim[0];
 
     if (c_arr != NULL) input = c_arr;
 
@@ -13,7 +14,7 @@ char *strtok_custom(char c_arr[], char delim) {
 
     int i = 0;
     for (; input[i] != '\0'; i++) {
-        if (input[i] != delim) {
+        if (input[i] != delim_char) {
             token[i] = input[i];
         }
         else {
@@ -32,10 +33,10 @@ char *strtok_custom(char c_arr[], char delim) {
 int main(void) {
     char arr[] = "My name is Debashish Sarkar Durjoy";
 
-    char *c = strtok_custom(arr, ' ');
+    char *c = strtok_custom(arr, " ");
     while (c != NULL) {
         cout << c << endl;
-        c = strtok_custom(NULL, ' ');
+        c = strtok_custom(NULL, " ");
     }
 
     return 0;
