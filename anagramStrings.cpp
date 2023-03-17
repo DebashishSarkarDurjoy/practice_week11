@@ -6,9 +6,7 @@ using namespace std;
 
 bool isAnagram(unordered_map<char, int> &m_window, unordered_map<char, int> &m_word) {
     bool is_anagram = true;
-
     // if (m_window.size() != m_word.size()) return false;
-
     for (auto word_p: m_word) {
         if (m_window.find(word_p.first) == m_window.end() || m_window[word_p.first] != m_word[word_p.first]) return false;
     }
@@ -44,7 +42,6 @@ int main(void) {
 
     for (int i: indices) cout << i << " ";
     cout << endl;
-
 
     return 0;
 }
