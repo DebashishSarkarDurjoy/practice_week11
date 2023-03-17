@@ -4,17 +4,17 @@
 
 using namespace std;
 
-// bool isAnagram(unordered_map<char, int> &m_window, unordered_map<char, int> &m_word) {
-//     bool is_anagram = true;
+bool isAnagram(unordered_map<char, int> &m_window, unordered_map<char, int> &m_word) {
+    bool is_anagram = true;
 
-//     if (m_window.size() != m_word.size()) return false;
+    // if (m_window.size() != m_word.size()) return false;
 
-//     for (auto word_p: m_word) {
-//         if (m_window.find(word_p.first) == m_window.end() || m_window[word_p.first] != m_word[word_p.first]) return false;
-//     }
+    for (auto word_p: m_word) {
+        if (m_window.find(word_p.first) == m_window.end() || m_window[word_p.first] != m_word[word_p.first]) return false;
+    }
 
-//     return is_anagram;
-// }
+    return is_anagram;
+}
 
 int main(void) {
     vector<int> indices;
@@ -27,16 +27,19 @@ int main(void) {
         word_map[c]++;
     }
 
-    for (int i = 0; i <= s.size() - word.size(); i++) {
-        unordered_map<char, int> window_map;
-        
-        for (int j = i; j <= i + word.size() - 1; j++) {
-            window_map[s[j]]++;
-        }
-        
-        if (window_map == word_map) {
-            indices.push_back(i);
-        }
+    unordered_map<char, int> window_map;
+    int i = 0;
+    int j = word.size()-1;
+    for (int temp = 0; temp <= j; temp++) {
+        window_map[s[temp]]++;
+    }
+
+    while (i != s.size()-1) {
+        if (isAnagram(window_map, word_map)) indices.push_back(i);
+
+        window_map[s[++j]]++;
+        window_map[s[i]]--;
+        i++;
     }
 
     for (int i: indices) cout << i << " ";
