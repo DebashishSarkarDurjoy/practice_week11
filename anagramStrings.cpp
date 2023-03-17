@@ -4,17 +4,17 @@
 
 using namespace std;
 
-bool isAnagram(unordered_map<char, int> &m_window, unordered_map<char, int> &m_word) {
-    bool is_anagram = true;
+// bool isAnagram(unordered_map<char, int> &m_window, unordered_map<char, int> &m_word) {
+//     bool is_anagram = true;
 
-    if (m_window.size() != m_word.size()) return false;
+//     if (m_window.size() != m_word.size()) return false;
 
-    for (auto word_p: m_word) {
-        if (m_window.find(word_p.first) == m_window.end() || m_window[word_p.first] != m_word[word_p.first]) return false;
-    }
+//     for (auto word_p: m_word) {
+//         if (m_window.find(word_p.first) == m_window.end() || m_window[word_p.first] != m_word[word_p.first]) return false;
+//     }
 
-    return is_anagram;
-}
+//     return is_anagram;
+// }
 
 int main(void) {
     vector<int> indices;
@@ -34,8 +34,7 @@ int main(void) {
             window_map[s[j]]++;
         }
         
-        cout << endl;
-        if (isAnagram(window_map, word_map)) {
+        if (window_map == word_map) {
             indices.push_back(i);
         }
     }
